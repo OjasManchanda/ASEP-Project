@@ -6,17 +6,15 @@ body {
 
 .head {
     background-color: #117864;
-    height: 140px;
+    height: 150px;
     display: flex; 
     justify-content: center; 
     align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
-    color: azure;
+    color: white;
     margin: 0; 
     font-size: 3rem;
 
@@ -37,7 +35,7 @@ h1 {
     border: 1px solid #2c3e50;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px; /* Fixed width for uniformity */
+    width: 300px; 
     padding: 1rem;
     text-align: center;
     color: white;
@@ -62,15 +60,39 @@ h1 {
 .text {
     color: azure;
     font-size: 1rem;
-    margin: 0; /* Removes extra spacing */
+    margin: 0; 
 }
 
 .footer {
     background-color: #117864;
     text-align: center;
-    padding: 1rem 0; /* Vertical padding */
-    margin: 0; /* Removes extra margin */
-    width: 100%; /* Ensures full width */
-    box-sizing: border-box; /* Includes padding in width */
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3); /* Adds shadow */
+    padding: 1rem 0; 
+    margin: 0; 
+    width: 100%; 
+    box-sizing: border-box; 
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3); 
+}
+.add-profile-button {
+   
+    background-color: #117864;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+    display: flex; 
+    justify-content: center;
+    align-items: flex-start;
+    width: 190px;
+    transition: background-color 0.2s, transform 0.2s;
+    position: relative;
+    cursor: pointer;
+    bottom: 550px;
+    left:  640px;
+}
+
+.add-profile-button:hover {
+    background-color: #0a4a3e;
+    transform: scale(1.05);
 }
