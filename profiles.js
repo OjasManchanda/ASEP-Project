@@ -25,4 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
   
     loadProfiles();
   });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const clearButton = document.querySelector("#clear-profiles"); // Assuming you add this button in the HTML
+    
+    // Function to clear all profiles
+    function clearAllProfiles() {
+      localStorage.removeItem("dogProfiles");
+      alert("All profiles have been cleared!");
+      window.location.reload(); // Reload to remove the profiles from the UI
+    }
+  
+    clearButton.addEventListener("click", clearAllProfiles);
+  });
+  
   
