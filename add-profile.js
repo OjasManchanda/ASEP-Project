@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const rfidInput = document.querySelector("#rfid-tag");
     const breedInput = document.querySelector("#breed");
   
-    // Function to validate form inputs
+
     function validateForm() {
       if (!nameInput.value.trim()) {
         alert("Please enter the dog's name.");
