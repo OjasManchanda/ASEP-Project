@@ -1,66 +1,47 @@
+// Example of MySQL queries for food level and health alerts
 const express = require("express");
 const mysql = require("mysql2");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-
 const app = express();
-const port = 3000;
+const PORT = 5001;
 
-
-app.use(cors());
-app.use(bodyParser.json());
-
+// Database connection
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root", 
-    password: "PRINTpack1", 
-    database: "street_dog_feeder",
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "street_dog_feeder",
 });
 
 db.connect((err) => {
+  if (err) {
+    console.error("Database connection failed:", err.stack);
+    return;
+  }
+  console.log("Connected to MySQL database.");
+});
+
+// Route for food level
+app.get("/dashboard/food-level", (req, res) => {
+  const query = "SELECT level FROM food WHERE id = 1";  // Adjust as per your table
+  db.query(query, (err, results) => {
     if (err) {
-        console.error("Error connecting to MySQL:", err.message);
-        process.exit(1); 
-    } else {
-        console.log("Connected to MySQL database!");
+      return res.status(500).json({ message: "Failed to retrieve food level." });
     }
+    res.json(results[0]); // Assuming results contains the food level
+  });
 });
 
-app.post("/add-dog", (req, res) => {
-    const { name, rfid, breed } = req.body;
-
-
-    if (!name || !rfid || !breed) {
-        return res.status(400).json({ message: "All fields are required." });
+// Route for health alerts
+app.get("/dashboard/health-alerts", (req, res) => {
+  const query = "SELECT alerts FROM health WHERE dog_id = 1";  // Adjust as per your table
+  db.query(query, (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: "Failed to retrieve health alerts." });
     }
-
-    const query = "INSERT INTO dogs (name, rfid_tag, breed) VALUES (?, ?, ?)";
-    db.query(query, [name, rfid, breed], (err) => {
-        if (err) {
-            if (err.code === "ER_DUP_ENTRY") {
-                return res
-                    .status(409)
-                    .json({ message: "RFID tag must be unique. Please try again." });
-            }
-            console.error("Database error:", err.message);
-            return res.status(500).json({ message: "Database error. Try again later." });
-        }
-
-        res.status(201).json({ message: "Dog profile added successfully!" });
-    });
+    res.json(results[0]); // Assuming results contains the health alert data
+  });
 });
 
-app.get("/get-dog-profiles", (req, res) => {
-    const query = "SELECT * FROM dogs";
-    db.query(query, (err, results) => {
-        if (err) {
-            console.error("Database error:", err.message);
-            return res.status(500).json({ message: "Failed to fetch profiles. Try again later." });
-        }
-        res.status(200).json(results);
-    });
-});
-
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadProfiles();
 });
 
-
   document.addEventListener("DOMContentLoaded", () => {
     const clearButton = document.querySelector("#clear-profiles"); 
   

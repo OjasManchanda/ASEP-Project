@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const scheduleContainer = document.querySelector(".schedule-container");
-
     
     const profiles = JSON.parse(localStorage.getItem("dogProfiles")) || [];
 
-    
     function createScheduleCard(profile) {
         const scheduleCard = document.createElement("div");
         scheduleCard.classList.add("schedule-card");
